@@ -1,6 +1,6 @@
 
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://54.173.142.50:3000';
 export const fetchPost = (url, payload) => {
   return fetch(baseUrl.concat(url), {
     method: 'post',

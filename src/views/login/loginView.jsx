@@ -33,7 +33,7 @@ class Login extends Component {
       rows: [
         {
           productId: 0,
-          featureId: 0
+          reviewId: 0
         }
       ],
       products: [],
@@ -84,6 +84,8 @@ class Login extends Component {
     console.log(e)
     e.preventDefault();
     var emailAddress = document.getElementById('userEmail').value
+    var companyName = document.getElementById('companyName').value
+
     if (!emailAddress) {
       console.log(true)
       this.setState(Object.assign({}, this.state, { emailError: true }))
@@ -92,6 +94,7 @@ class Login extends Component {
 
       const postData = {
         emailAddress,
+        companyName,
         info: this.state.rows
       }
 
@@ -119,7 +122,7 @@ class Login extends Component {
   addMoreClicked() {
     const row = {
       productId: 0,
-      featureId: 0
+      reviewId: 0
     }
     this.setState(prevState => (
       Object.assign({}, this.state, { rows: [...prevState.rows,row] })
@@ -144,7 +147,7 @@ class Login extends Component {
     var selectedIndex = element.selectedIndex
 
     const rowItems = [...this.state.rows];
-    rowItems[rowIndex].featureId = selectedIndex;
+    rowItems[rowIndex].reviewId = selectedIndex;
     this.setState(Object.assign({}, this.state, { rows: rowItems }));
     console.log(this.state)
   }
@@ -263,6 +266,17 @@ class Login extends Component {
                   <form className="form" onSubmit={ (e) => this.submitForm(e) }>
                      
                     <ShowEmailAddressAlert />
+
+                    <FormGroup controlId="companyName">
+                      <ControlLabel>Company Name</ControlLabel>
+                      <FormControl
+                        type="text"
+                        name="companyName"
+                        value={this.state.value}
+                        placeholder="Enter your Company Name"
+                        onChange={this.handleChange}
+                      />                
+                    </FormGroup>
 
                     <FormGroup controlId="userEmail">
                       <ControlLabel>Email address to recive the report</ControlLabel>
